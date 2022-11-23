@@ -26,13 +26,13 @@
             // 2 - fetch() : location
             
 
-            fetch('http://ip-api.com/json/', iipp)
+            fetch('https://ip-api.com/json/', iipp)
             .then(function(response) {
              return response.json()
             })
             .then(function(data) {
              loc.innerHTML = "Address of your IP is: "+ data.city+" City, " +  data.regionName + ",  " + data.country ;
-             ddd = data.json
+             ddd = data.jso
             }); 
 
             // weather using ip
