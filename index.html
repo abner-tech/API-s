@@ -40,9 +40,9 @@
 
                 fetch(`https://weatherapi-com.p.rapidapi.com/current.json?q=${cityy}`, options)
                     .then(response => response.json())
-                    .then(response => [c.textContent = "Current Weather Condition is: "+ response['current'].condition['text'],
-                     temp.textContent = "Current Temperature is: " + response['current'].temp_f + ss
-                ])
+                    .then(response => [c.textContent = "Current Weather Condition is: " + response['current'].condition['text'],
+                    temp.textContent = "Current Temperature is: " + response['current'].temp_f + ss
+                    ])
             })
             // .then(response => [c.textContent = "Current Weather Condition is: "+ response['current_observation'].condition['text'],
             //             temp.textContent = "Current temperuture is: " + response['current_observation'].condition['temperature'] + ss])
