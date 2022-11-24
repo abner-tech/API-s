@@ -1,48 +1,53 @@
 <!DOCTYPE html>
 <html>
-    <body style="text-align:center; padding-top: 1cm; font-size:x-large">
-    
-        <section id="ip">
 
-        </section>
+<body style="text-align:center; padding-top: 1cm; font-size:x-large">
+
+    <section id="ip">
+
+    </section><br><br>
+
+    <section id="loc">
+
+    </section><br><br>
+    <section id="weather"></section>
+
+
+    <script type="application/javascript">
         
-        <section id="loc">
+        var  cityy
+        let loc = document.getElementById("loc")
+        let b = document.getElementById("ip")
+        let c = document.getElementById("weather")
 
-        </section>
 
-            
-        <script type="application/javascript">
+        // 1 - ip api
+        fetch("https://ipinfo.io/json?token=a9ae3aec5cf5d5")
+            .then((response) => response.json()
+            ).then(function (jsonResponse) {
+                b.textContent = "Your IP Address is: " + jsonResponse.ip // public ip
+                loc.textContent = "Your Location is: " + jsonResponse.city  // location
+                cityy = jsonResponse.city
 
-            var iipp
-            let loc = document.getElementById("loc")
-            var ddd
-            let b = document.getElementById("ip")
-            // 1 - ip api
-            fetch("https://ipinfo.io/json?token=a9ae3aec5cf5d5").then(
-            (response) => response.json()
-            ).then(function(jsonResponse){
-             b.innerHTML = "Your IP Address is: " + jsonResponse.ip + "<br><br>"
-             loc.innerHTML = "your Location is: " + jsonResponse.city
-            }
-            )
-            // 2 - fetch() : location
-            
+                const options = {
+                    method: 'GET',
+                    headers: {
+                        'X-RapidAPI-Key': '50c973c06emsh3f4748941215766p17f27ajsn1d475fab539c',
+                        'X-RapidAPI-Host': 'yahoo-weather5.p.rapidapi.com'
+                    }
+                };
 
-            /*fetch('http://ip-api.com/json/', iipp)
-            .then(function(response) {
-             return response.json()
+                fetch(`https://yahoo-weather5.p.rapidapi.com/weather?location=${cityy}&format=json&u=f`, options)
+                    .then(response => response.json())
+                    .then(response => c.textContent = "Current Weather Condition is: "+ response['current_observation'].condition['text'])
             })
-            .then(function(data) {
-             loc.innerHTML = "Address of your IP is: "+ data.city+" City, " +  data.regionName + ",  " + data.country ;
-             ddd = data.jso
-            }); */
-
-            // weather using ip
-
             
+            // 2 - fetch() : location
+            // weather using #1 api elements ar variables
 
-          </script>
-          
-          <script type="application/javascript" src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
-    </body>
+
+    </script>
+
+</body>
+
 </html>
