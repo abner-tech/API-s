@@ -15,13 +15,13 @@
 
 
     <script type="application/javascript">
-        
-        var  cityy ,ss
+
+        var cityy, ss
         let loc = document.getElementById("loc")
         let b = document.getElementById("ip")
         let c = document.getElementById("weather")
         let temp = document.getElementById("temp")
-ss = String.fromCodePoint(8457)
+        ss = String.fromCodePoint(8457)
 
         fetch("https://ipinfo.io/json?token=a9ae3aec5cf5d5")
             .then((response) => response.json()
@@ -34,16 +34,18 @@ ss = String.fromCodePoint(8457)
                     method: 'GET',
                     headers: {
                         'X-RapidAPI-Key': '50c973c06emsh3f4748941215766p17f27ajsn1d475fab539c',
-                        'X-RapidAPI-Host': 'yahoo-weather5.p.rapidapi.com'
+                        'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
                     }
                 };
 
-                fetch(`https://yahoo-weather5.p.rapidapi.com/weather?location=${cityy}&format=json&u=f`, options)
+                fetch(`https://weatherapi-com.p.rapidapi.com/current.json?q=${cityy}`, options)
                     .then(response => response.json())
-                    .then(response => [c.textContent = "Current Weather Condition is: "+ response['current_observation'].condition['text'],
-                        temp.textContent = "Current temperuture is: " + response['current_observation'].condition['temperature'] + ss])
+                    .then(response => [c.textContent = "Current Weather Condition is: "+ response['current'].condition['text'],
+                     temp.textContent = "Current Temperature is: " + response['current'].temp_f + ss
+                ])
             })
-            
+            // .then(response => [c.textContent = "Current Weather Condition is: "+ response['current_observation'].condition['text'],
+            //             temp.textContent = "Current temperuture is: " + response['current_observation'].condition['temperature'] + ss])
             // 2 - fetch() : location
             // weather using #1 api elements ar variables
 
